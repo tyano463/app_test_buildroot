@@ -1,0 +1,23 @@
+#!/bin/sh
+
+ARGV=$1
+export DISPLAY=:0.0
+case "$ARGV" in
+    start)
+        twm &
+        feh --bg-scale /usr/share/backgrounds/bg1.jpg &
+        xterm -geometry 100x24+100+100 &
+        ;;
+    stop)
+        killall X
+        ;;
+    restart)
+        "$0" stop
+        "$0" start
+        ;;
+    *)
+        echo "ARGV:$ARGV"
+        exit 1
+esac
+exit 0
+
